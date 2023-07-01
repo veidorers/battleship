@@ -19,22 +19,6 @@ public class Field {
         }
     }
 
-//    public Field(SingleDeckShip[] ships) {
-//        this.ships = ships;
-//        field = new char[10][10];
-//
-//        for(int i = 0; i < 10; ++i) {
-//            for (int j = 0; j < 10; j++) {
-//                field[i][j] = '_';
-//            }
-//        }
-//
-//        for(SingleDeckShip ship : ships) {
-//            int[] coords = ship.getCoords();
-//            field[coords[0]][coords[1]] = 'К';
-//        }
-//    }
-
     public void printField() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -49,6 +33,26 @@ public class Field {
         int[] coords = ship.getCoords();
 
         field[coords[0]][coords[1]] = FieldUnits.SHIP;
+        if(coords[0] != 0) {
+            field[coords[0] - 1][coords[1] - 1] = FieldUnits.AUREOLE;
+            field[coords[0] - 1][coords[1]] = FieldUnits.AUREOLE;
+            field[coords[0] - 1][coords[1] + 1] = FieldUnits.AUREOLE;
+        }
+        if(coords[0] != 9) {
+            field[coords[0] + 1][coords[1] - 1] = FieldUnits.AUREOLE;
+            field[coords[0] + 1][coords[1]] = FieldUnits.AUREOLE;
+            field[coords[0] + 1][coords[1] + 1] = FieldUnits.AUREOLE;
+        }
+        if(coords[1] != 0) {
+            field[coords[0] - 1][coords[1] - 1] = FieldUnits.AUREOLE;
+            field[coords[0]][coords[1] - 1] = FieldUnits.AUREOLE;
+            field[coords[0] + 1][coords[1] - 1] = FieldUnits.AUREOLE;
+        }
+        if(coords[1] != 9) {
+            field[coords[0] - 1][coords[1] + 1] = FieldUnits.AUREOLE;
+            field[coords[0]][coords[1] + 1] = FieldUnits.AUREOLE;
+            field[coords[0] + 1][coords[1] + 1] = FieldUnits.AUREOLE;
+        }
     }
 
     public void placeShips() {
@@ -67,7 +71,11 @@ public class Field {
                     try {
                         coords[0] = Integer.parseInt(stringNumbers[0]);
                         coords[1] = Integer.parseInt(stringNumbers[1]);
-                        validInput = true;
+
+                        if(field[coords[0]][coords[1]] == FieldUnits.AUREOLE)
+                            System.out.println("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
+                        else
+                            validInput = true;
                     } catch(NumberFormatException e) {
                         System.out.println("Координаты неверные. X и Y должны быть числами!");
                     }

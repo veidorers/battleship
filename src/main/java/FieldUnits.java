@@ -1,5 +1,5 @@
 public enum FieldUnits {
-    EMPTY("⬜"), SHIP("\uD83D\uDEA2");
+    EMPTY("\uD83D\uDD33"), SHIP("\uD83D\uDEA2"), AUREOLE("\uD83D\uDFE6"), HIT("\uD83D\uDFE5");
 
     private String representation;
 
