@@ -12,6 +12,4 @@ public class SingleDeckShip {
     public Coordinates getCoords() {
         return coords;
     }
-
-
 }

@@ -14,7 +14,7 @@ public class Field {
         this.ships = new ArrayList<>();
         field = new FieldUnits[10][10];
 
-        for(int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 10; ++i) {
             for (int j = 0; j < 10; j++) {
                 field[i][j] = FieldUnits.EMPTY;
             }
@@ -30,55 +30,55 @@ public class Field {
         }
     }
 
+    public void placeShips() {
+        placeShips(SingleDeckShip.class);
+    }
+
     public void addShip(SingleDeckShip ship) {
         ships.add(ship);
         Coordinates coords = ship.getCoords();
 
-        field[coords.x][coords.y] = FieldUnits.SHIP;
-        if(coords.x != 0) {
-            field[coords.x - 1][coords.y - 1] = FieldUnits.AUREOLE;
-            field[coords.x - 1][coords.y] = FieldUnits.AUREOLE;
-            field[coords.x - 1][coords.y + 1] = FieldUnits.AUREOLE;
-        }
-        if(coords.x != 9) {
-            field[coords.x + 1][coords.y - 1] = FieldUnits.AUREOLE;
-            field[coords.x + 1][coords.y] = FieldUnits.AUREOLE;
-            field[coords.x + 1][coords.y + 1] = FieldUnits.AUREOLE;
-        }
-        if(coords.y != 0) {
-            field[coords.x - 1][coords.y - 1] = FieldUnits.AUREOLE;
-            field[coords.x][coords.y - 1] = FieldUnits.AUREOLE;
-            field[coords.x + 1][coords.y - 1] = FieldUnits.AUREOLE;
-        }
-        if(coords.y != 9) {
-            field[coords.x - 1][coords.y + 1] = FieldUnits.AUREOLE;
-            field[coords.x][coords.y + 1] = FieldUnits.AUREOLE;
-            field[coords.x + 1][coords.y + 1] = FieldUnits.AUREOLE;
+        field[coords.y][coords.x] = FieldUnits.SHIP;
+
+        int xMin = Math.max(coords.x - 1, 0);
+        int xMax = Math.min(coords.x + 1, 9);
+
+        int yMin = Math.max(coords.y - 1, 0);
+        int yMax = Math.min(coords.y + 1, 9);
+
+        for(int i = xMin; i <= xMax; ++i) {
+            for(int j = yMin; j <= yMax; ++j) {
+                if(field[j][i] == FieldUnits.SHIP)
+                    continue;
+
+                field[j][i] = FieldUnits.AUREOLE;
+            }
         }
     }
 
-    public void placeShips() {
+
+    public void placeShips(Class<SingleDeckShip> clazz) {
         Scanner scanner = new Scanner(System.in);
         boolean validInput = false;
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             Coordinates coords = new Coordinates();
 
-            while(!validInput) {
+            while (!validInput) {
                 System.out.println("Введи координаты " + (i + 1) + " однопалубного коробля (формат: x,y)");
                 String line = scanner.nextLine();
 
-                if(line.length() == 3 && line.charAt(1) == ',') {
+                if (line.length() == 3 && line.charAt(1) == ',') {
                     String[] stringNumbers = line.split(",");
                     try {
                         coords.x = Integer.parseInt(stringNumbers[0]);
                         coords.y = Integer.parseInt(stringNumbers[1]);
-
-                        if(field[coords.x][coords.y] == FieldUnits.AUREOLE)
+                        if (field[coords.x][coords.y] == FieldUnits.AUREOLE)
                             System.out.println("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
                         else
                             validInput = true;
-                    } catch(NumberFormatException e) {
+
+                    } catch (NumberFormatException e) {
                         System.out.println("Координаты неверные. X и Y должны быть числами!");
                     }
                 } else {
@@ -88,6 +88,9 @@ public class Field {
 
             validInput = false;
             addShip(new SingleDeckShip(coords));
+
+            printField();
         }
     }
+
 }

@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d40eae6f-6e92-4095-976d-2dcf9280d029" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ships/SingleDeckShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Battleship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Battleship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FieldUnits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FieldUnits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ships/SingleDeckShip.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ships/SingleDeckShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ships/SingleDeckShip.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +19,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -45,6 +39,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/JavaProgramms/JavaMarathon/sea_battle&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
@@ -89,7 +84,11 @@
       <workItem from="1688129769358" duration="4195000" />
       <workItem from="1688223051833" duration="2433000" />
       <workItem from="1688226613408" duration="23000" />
-      <workItem from="1688279775634" duration="3265000" />
+      <workItem from="1688279775634" duration="5785000" />
+      <workItem from="1688287452847" duration="955000" />
+      <workItem from="1688292387685" duration="35000" />
+      <workItem from="1688313526673" duration="2439000" />
+      <workItem from="1688389261305" duration="1288000" />
     </task>
     <servers />
   </component>
