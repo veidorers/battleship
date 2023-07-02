@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d40eae6f-6e92-4095-976d-2dcf9280d029" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/ships/SingleDeckShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Battleship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Battleship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Field.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FieldUnits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FieldUnits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Battleship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Battleship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FieldUnits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FieldUnits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ships/SingleDeckShip.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,15 +56,15 @@
 }</component>
   <component name="RunManager" selected="Application.Battleship">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Battleship" />
-      <module name="sea_battle" />
+      <option name="MAIN_CLASS_NAME" value="com.example.Battleship" />
+      <module name="battleship" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="sea_battle" />
+      <option name="MAIN_CLASS_NAME" value="com.example.Test" />
+      <module name="battleship" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -82,7 +87,9 @@
       <workItem from="1688041196583" duration="726000" />
       <workItem from="1688053912879" duration="1903000" />
       <workItem from="1688129769358" duration="4195000" />
-      <workItem from="1688223051833" duration="1616000" />
+      <workItem from="1688223051833" duration="2433000" />
+      <workItem from="1688226613408" duration="23000" />
+      <workItem from="1688279775634" duration="3265000" />
     </task>
     <servers />
   </component>
@@ -104,12 +111,12 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Battleship.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/Battleship.java</url>
           <line>7</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Test.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/Test.java</url>
           <line>6</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>

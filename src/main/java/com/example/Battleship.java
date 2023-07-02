@@ -1,4 +1,4 @@
-import ships.SingleDeckShip;
+package com.example;
 
 public class Battleship {
     public static void main(String[] args) {
