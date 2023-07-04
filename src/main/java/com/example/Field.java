@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.ships.DoubleDeckShip;
+import com.example.ships.Ship;
 import com.example.ships.SingleDeckShip;
 
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Field {
-    private List<SingleDeckShip> ships;
+    private List<Ship> ships;
     private FieldUnits field[][];
 
     public Field() {
@@ -30,21 +32,33 @@ public class Field {
         }
     }
 
+
     public void placeShips() {
-        placeShips(SingleDeckShip.class);
+        placeDoubleDeckShips();
+        placeSingleDeckShips();
     }
 
-    public void addShip(SingleDeckShip ship) {
+
+    public void addShip(Ship ship) {
         ships.add(ship);
-        Coordinates coords = ship.getCoords();
 
-        field[coords.y][coords.x] = FieldUnits.SHIP;
+        Coordinates[] coords = ship.getCoords();
 
-        int xMin = Math.max(coords.x - 1, 0);
-        int xMax = Math.min(coords.x + 1, 9);
+        for(int i = 0; i < ship.getSize(); ++i)
+            field[coords[i].y][coords[i].x] = FieldUnits.SHIP;
 
-        int yMin = Math.max(coords.y - 1, 0);
-        int yMax = Math.min(coords.y + 1, 9);
+        int xMin = 9, xMax = 0, yMin = 9, yMax = 0;
+        for(int i = 0; i < ship.getSize(); ++i) {
+            if(coords[i].x > xMax) xMax = coords[i].x;
+            if(coords[i].x < xMin) xMin = coords[i].x;
+
+            if(coords[i].y > yMax) yMax = coords[i].y;
+            if(coords[i].y < yMin) yMin = coords[i].y;
+        }
+        xMax = Math.min(xMax + 1, 9);
+        xMin = Math.max(xMin - 1, 0);
+        yMax = Math.min(yMax + 1, 9);
+        yMin = Math.max(yMin - 1, 0);
 
         for(int i = xMin; i <= xMax; ++i) {
             for(int j = yMin; j <= yMax; ++j) {
@@ -57,12 +71,12 @@ public class Field {
     }
 
 
-    public void placeShips(Class<SingleDeckShip> clazz) {
+    public void placeSingleDeckShips() {
         Scanner scanner = new Scanner(System.in);
         boolean validInput = false;
 
-        for (int i = 0; i < 2; i++) {
-            Coordinates coords = new Coordinates();
+        for (int i = 0; i < 4; i++) {
+            Coordinates[] coords = new Coordinates[1];
 
             while (!validInput) {
                 System.out.println("Введи координаты " + (i + 1) + " однопалубного коробля (формат: x,y)");
@@ -71,9 +85,11 @@ public class Field {
                 if (line.length() == 3 && line.charAt(1) == ',') {
                     String[] stringNumbers = line.split(",");
                     try {
-                        coords.x = Integer.parseInt(stringNumbers[0]);
-                        coords.y = Integer.parseInt(stringNumbers[1]);
-                        if (field[coords.x][coords.y] == FieldUnits.AUREOLE)
+                        coords[0] = new Coordinates();
+
+                        coords[0].x = Integer.parseInt(stringNumbers[0]);
+                        coords[0].y = Integer.parseInt(stringNumbers[1]);
+                        if (field[coords[0].y][coords[0].x] == FieldUnits.AUREOLE)
                             System.out.println("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
                         else
                             validInput = true;
@@ -93,4 +109,56 @@ public class Field {
         }
     }
 
+    public void placeDoubleDeckShips() {
+        Scanner scanner = new Scanner(System.in);
+        boolean validInput = false;
+
+        for (int i = 0; i < 3; ++i) {
+            Coordinates[] coords = new Coordinates[2];
+
+            while (!validInput) {
+                System.out.println("Введите координаты " + (i + 1) + " двухпалубного коробля (формат: x,y;x,y)");
+                String line = scanner.nextLine();
+
+                if (line.length() == 7 && line.charAt(1) == ',' && line.charAt(3) == ';' && line.charAt(5) == ',') {
+                    String[] coordinates = line.split(";");
+                    String[] coords1 = coordinates[0].split(",");
+                    String[] coords2 = coordinates[1].split(",");
+
+                    try {
+                        for (int j = 0; j < coords.length; ++j) {
+                            coords[j] = new Coordinates();
+                        }
+
+                        coords[0].x = Integer.parseInt(coords1[0]);
+                        coords[0].y = Integer.parseInt(coords1[1]);
+                        coords[1].x = Integer.parseInt(coords2[0]);
+                        coords[1].y = Integer.parseInt(coords2[1]);
+
+                        int xDiff = Math.abs(coords[0].x - coords[1].x);
+                        int yDiff = Math.abs(coords[0].y - coords[1].y);
+
+                        if(xDiff > 1 || yDiff > 1 || xDiff == yDiff) {
+                            System.out.println("Корабль должен располагаться либо вертикально, либо горизонтально!");
+                        }
+                        else if (field[coords[0].y][coords[0].x] == FieldUnits.AUREOLE ||
+                                field[coords[1].y][coords[1].x] == FieldUnits.AUREOLE) {
+                            System.out.println("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
+                        }
+                        else
+                            validInput = true;
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Координаты неверные. X и Y должны быть числами!");
+                    }
+                } else {
+                    System.out.println("Координаты неверные. Правильный формат: x,y");
+                }
+            }
+            validInput = false;
+            addShip(new DoubleDeckShip(coords));
+
+            printField();
+        }
+    }
 }

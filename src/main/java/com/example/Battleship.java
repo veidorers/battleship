@@ -5,6 +5,6 @@ public class Battleship {
         Field field = new Field();
         field.placeShips();
 
-        field.printField();
+//        field.printField();
     }
 }
