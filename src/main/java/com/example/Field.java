@@ -1,9 +1,6 @@
 package com.example;
 
-import com.example.ships.DoubleDeckShip;
-import com.example.ships.Ship;
-import com.example.ships.SingleDeckShip;
-import com.example.ships.ThreeDeckShip;
+import com.example.ships.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +35,7 @@ public class Field {
 
 
     public void placeShips() {
+        placeFourDeckShips();
         placeThreeDeckShips();
         placeDoubleDeckShips();
         placeSingleDeckShips();
@@ -237,5 +235,75 @@ public class Field {
 
             printField();
         }
+    }
+
+    public void placeFourDeckShips() {
+        Scanner scanner = new Scanner(System.in);
+        boolean validInput = false;
+
+        Coordinates[] coords = new Coordinates[4];
+
+        while (!validInput) {
+            System.out.println("Введите координаты четырёхпалубного коробля (формат: x,y;x,y;x,y;x,y)");
+            String line = scanner.nextLine();
+
+            if (line.length() != 15 || line.charAt(1) != ',' || line.charAt(3) != ';' || line.charAt(5) != ','
+                    || line.charAt(7) != ';' || line.charAt(9) != ','
+                    || line.charAt(11) != ';' || line.charAt(13) != ',')
+                System.out.println("Координаты неверные. Правильный формат: x,y");
+            else {
+                String[] coordinates = line.split(";");
+                String[] coords1 = coordinates[0].split(",");
+                String[] coords2 = coordinates[1].split(",");
+                String[] coords3 = coordinates[2].split(",");
+                String[] coords4 = coordinates[3].split(",");
+
+                try {
+                    for (int j = 0; j < coords.length; ++j) {
+                        coords[j] = new Coordinates();
+                    }
+
+                    coords[0].x = Integer.parseInt(coords1[0]);
+                    coords[0].y = Integer.parseInt(coords1[1]);
+                    coords[1].x = Integer.parseInt(coords2[0]);
+                    coords[1].y = Integer.parseInt(coords2[1]);
+                    coords[2].x = Integer.parseInt(coords3[0]);
+                    coords[2].y = Integer.parseInt(coords3[1]);
+                    coords[3].x = Integer.parseInt(coords4[0]);
+                    coords[3].y = Integer.parseInt(coords4[1]);
+
+                    int xDiff = 0;
+                    int yDiff = 0;
+
+                    for (int j = 0; j < 3; j++) {
+                        xDiff = Math.abs(coords[j].x - coords[j + 1].x);
+                        yDiff = Math.abs(coords[j].y - coords[j + 1].y);
+
+                        if (xDiff > 1 || yDiff > 1 || xDiff == yDiff) {
+                            throw new InvalidShipPlacementException("Корабль должен располагаться либо вертикально, либо горизонтально!");
+                        }
+                    }
+
+                    if (field[coords[0].y][coords[0].x] != FieldUnits.EMPTY ||
+                            field[coords[1].y][coords[1].x] != FieldUnits.EMPTY ||
+                            field[coords[2].y][coords[2].x] != FieldUnits.EMPTY ||
+                            field[coords[3].y][coords[3].x] != FieldUnits.EMPTY) {
+                        throw new InvalidShipPlacementException("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
+                    }
+
+                    validInput = true;
+
+                } catch (NumberFormatException e) {
+                    System.out.println("Координаты неверные. X и Y должны быть числами!");
+                } catch (InvalidShipPlacementException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+        validInput = false;
+        addShip(new FourDeckShip(coords));
+
+        printField();
+
     }
 }
