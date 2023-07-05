@@ -33,12 +33,23 @@ public class Field {
         }
     }
 
+    //clear the field from aureoles squares
+    public void clearField() {
+        for (int i = 0; i < 10; ++i) {
+            for (int j = 0; j < 10; j++) {
+                if(field[i][j] == FieldUnits.AUREOLE)
+                    field[i][j] = FieldUnits.EMPTY;
+            }
+        }
+    }
 
     public void placeShips() {
         placeFourDeckShips();
         placeThreeDeckShips();
         placeDoubleDeckShips();
         placeSingleDeckShips();
+
+        clearField();
     }
 
 
