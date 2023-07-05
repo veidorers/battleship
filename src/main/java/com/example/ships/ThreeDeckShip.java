@@ -2,10 +2,10 @@ package com.example.ships;
 
 import com.example.Coordinates;
 
-public class DoubleDeckShip extends Ship {
-    private static final int SIZE = 2;
+public class ThreeDeckShip extends Ship {
+    private static final int SIZE = 3;
 
-    public DoubleDeckShip(Coordinates[] coords) {
+    public ThreeDeckShip(Coordinates[] coords) {
         super(coords);
     }
 

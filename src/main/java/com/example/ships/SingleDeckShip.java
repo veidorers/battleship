@@ -3,7 +3,7 @@ package com.example.ships;
 import com.example.Coordinates;
 
 public class SingleDeckShip extends Ship {
-    private final int SIZE = 1;
+    private static final int SIZE = 1;
 
     public SingleDeckShip(Coordinates[] coords) {
         super(coords);

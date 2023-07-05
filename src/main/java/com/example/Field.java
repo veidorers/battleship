@@ -3,6 +3,7 @@ package com.example;
 import com.example.ships.DoubleDeckShip;
 import com.example.ships.Ship;
 import com.example.ships.SingleDeckShip;
+import com.example.ships.ThreeDeckShip;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class Field {
 
 
     public void placeShips() {
+        placeThreeDeckShips();
         placeDoubleDeckShips();
         placeSingleDeckShips();
     }
@@ -85,23 +87,26 @@ public class Field {
                 System.out.println("Введи координаты " + (i + 1) + " однопалубного коробля (формат: x,y)");
                 String line = scanner.nextLine();
 
-                if (line.length() == 3 && line.charAt(1) == ',') {
+                if (line.length() != 3 || line.charAt(1) != ',')
+                    System.out.println("Координаты неверные. Правильный формат: x,y");
+
+                else {
                     String[] stringNumbers = line.split(",");
                     try {
                         coords[0] = new Coordinates();
 
                         coords[0].x = Integer.parseInt(stringNumbers[0]);
                         coords[0].y = Integer.parseInt(stringNumbers[1]);
-                        if (field[coords[0].y][coords[0].x] == FieldUnits.AUREOLE)
-                            System.out.println("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
-                        else
-                            validInput = true;
+                        if (field[coords[0].y][coords[0].x] != FieldUnits.EMPTY)
+                            throw new InvalidShipPlacementException("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
+
+                        validInput = true;
 
                     } catch (NumberFormatException e) {
                         System.out.println("Координаты неверные. X и Y должны быть числами!");
+                    } catch (InvalidShipPlacementException e) {
+                        System.out.println(e.getMessage());
                     }
-                } else {
-                    System.out.println("Координаты неверные. Правильный формат: x,y");
                 }
             }
 
@@ -123,7 +128,10 @@ public class Field {
                 System.out.println("Введите координаты " + (i + 1) + " двухпалубного коробля (формат: x,y;x,y)");
                 String line = scanner.nextLine();
 
-                if (line.length() == 7 && line.charAt(1) == ',' && line.charAt(3) == ';' && line.charAt(5) == ',') {
+                if (line.length() != 7 || line.charAt(1) != ',' || line.charAt(3) != ';' || line.charAt(5) != ',')
+                    System.out.println("Координаты неверные. Правильный формат: x,y");
+
+                else {
                     String[] coordinates = line.split(";");
                     String[] coords1 = coordinates[0].split(",");
                     String[] coords2 = coordinates[1].split(",");
@@ -142,24 +150,90 @@ public class Field {
                         int yDiff = Math.abs(coords[0].y - coords[1].y);
 
                         if(xDiff > 1 || yDiff > 1 || xDiff == yDiff) {
-                            System.out.println("Корабль должен располагаться либо вертикально, либо горизонтально!");
+                            throw new InvalidShipPlacementException("Корабль должен располагаться либо вертикально, либо горизонтально!");
                         }
-                        else if (field[coords[0].y][coords[0].x] == FieldUnits.AUREOLE ||
-                                field[coords[1].y][coords[1].x] == FieldUnits.AUREOLE) {
-                            System.out.println("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
+                        if (field[coords[0].y][coords[0].x] != FieldUnits.EMPTY ||
+                                field[coords[1].y][coords[1].x] != FieldUnits.EMPTY) {
+                            throw new InvalidShipPlacementException("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
                         }
-                        else
-                            validInput = true;
+
+                        validInput = true;
 
                     } catch (NumberFormatException e) {
                         System.out.println("Координаты неверные. X и Y должны быть числами!");
+                    } catch (InvalidShipPlacementException e) {
+                        System.out.println(e.getMessage());
                     }
-                } else {
-                    System.out.println("Координаты неверные. Правильный формат: x,y");
                 }
             }
             validInput = false;
             addShip(new DoubleDeckShip(coords));
+
+            printField();
+        }
+    }
+
+    public void placeThreeDeckShips() {
+        Scanner scanner = new Scanner(System.in);
+        boolean validInput = false;
+
+        for (int i = 0; i < 2; ++i) {
+            Coordinates[] coords = new Coordinates[3];
+
+            while (!validInput) {
+                System.out.println("Введите координаты " + (i + 1) + " трёхпалубного коробля (формат: x,y;x,y;x,y)");
+                String line = scanner.nextLine();
+
+                if (line.length() != 11 || line.charAt(1) != ',' || line.charAt(3) != ';' || line.charAt(5) != ','
+                        || line.charAt(7) != ';' || line.charAt(9) != ',')
+                    System.out.println("Координаты неверные. Правильный формат: x,y");
+                else {
+                    String[] coordinates = line.split(";");
+                    String[] coords1 = coordinates[0].split(",");
+                    String[] coords2 = coordinates[1].split(",");
+                    String[] coords3 = coordinates[2].split(",");
+
+                    try {
+                        for (int j = 0; j < coords.length; ++j) {
+                            coords[j] = new Coordinates();
+                        }
+
+                        coords[0].x = Integer.parseInt(coords1[0]);
+                        coords[0].y = Integer.parseInt(coords1[1]);
+                        coords[1].x = Integer.parseInt(coords2[0]);
+                        coords[1].y = Integer.parseInt(coords2[1]);
+                        coords[2].x = Integer.parseInt(coords3[0]);
+                        coords[2].y = Integer.parseInt(coords3[1]);
+
+                        int xDiff = 0;
+                        int yDiff = 0;
+
+                        for (int j = 0; j < 2; j++) {
+                            xDiff = Math.abs(coords[j].x - coords[j + 1].x);
+                            yDiff = Math.abs(coords[j].y - coords[j + 1].y);
+
+                            if (xDiff > 1 || yDiff > 1 || xDiff == yDiff) {
+                                throw new InvalidShipPlacementException("Корабль должен располагаться либо вертикально, либо горизонтально!");
+                            }
+                        }
+
+                        if (field[coords[0].y][coords[0].x] != FieldUnits.EMPTY ||
+                                field[coords[1].y][coords[1].x] != FieldUnits.EMPTY ||
+                                field[coords[2].y][coords[2].x] != FieldUnits.EMPTY) {
+                            throw new InvalidShipPlacementException("Корабли должны располагаться друг от друга на расстоянии 1 клетки!");
+                        }
+
+                        validInput = true;
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Координаты неверные. X и Y должны быть числами!");
+                    } catch (InvalidShipPlacementException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+            }
+            validInput = false;
+            addShip(new ThreeDeckShip(coords));
 
             printField();
         }
