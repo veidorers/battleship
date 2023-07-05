@@ -24,7 +24,10 @@ public class Field {
     }
 
     public void printField() {
+        System.out.println("  0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣");
+
         for (int i = 0; i < 10; i++) {
+            System.out.print(i + " ");
             for (int j = 0; j < 10; j++) {
                 System.out.print(field[i][j]);
             }
