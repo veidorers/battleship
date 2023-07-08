@@ -5,6 +5,7 @@ public class Player {
     public Field field;
     public Field enemyField;
     public int sunkShips;
+    public Player enemy;
 
     public Player(String name) {
         this.name = name;

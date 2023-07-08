@@ -1,7 +1,8 @@
 package com.example;
 
 public enum FieldUnits {
-    EMPTY("\uD83D\uDFE6"), SHIP("\uD83D\uDFE2"), AUREOLE("\uD83D\uDFE8"), HIT("\uD83D\uDFE5");
+    EMPTY("\uD83D\uDFE6"), SHIP("\uD83D\uDFE2"), AUREOLE("\uD83D\uDFE8"), HIT("\uD83D\uDFE5"),
+    MISS("\uD83D\uDFE8");
 
     private String representation;
 

@@ -21,6 +21,10 @@ public class Field {
         }
     }
 
+    public FieldUnits[][] getField() {
+        return field;
+    }
+
     public void printField() {
         System.out.println("  0️⃣1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣");
 
@@ -31,6 +35,14 @@ public class Field {
             }
             System.out.println();
         }
+    }
+
+    public Ship findShipByCoords(Coordinates coords) {
+        for(Ship s : ships) {
+            if(s.contains(coords))
+                return s;
+        }
+        return null;
     }
 
     //clear the field from aureoles squares
@@ -89,7 +101,7 @@ public class Field {
         Scanner scanner = new Scanner(System.in);
         boolean validInput = false;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 1; i++) {
             Coordinates[] coords = new Coordinates[1];
 
             while (!validInput) {
@@ -130,7 +142,7 @@ public class Field {
         Scanner scanner = new Scanner(System.in);
         boolean validInput = false;
 
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 1; ++i) {
             Coordinates[] coords = new Coordinates[2];
 
             while (!validInput) {
@@ -186,7 +198,7 @@ public class Field {
         Scanner scanner = new Scanner(System.in);
         boolean validInput = false;
 
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < 1; ++i) {
             Coordinates[] coords = new Coordinates[3];
 
             while (!validInput) {

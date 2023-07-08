@@ -7,9 +7,12 @@
     <list default="true" id="d40eae6f-6e92-4095-976d-2dcf9280d029" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Battleship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Battleship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Coordinates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Field.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/FieldUnits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/FieldUnits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/ships/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/ships/Ship.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,24 +40,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/JavaProgramms/JavaMarathon/sea_battle&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/JavaProgramms/Core/JavaMarathon/sea_battle",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "Console"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Battleship">
     <configuration name="Battleship" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.Battleship" />
-      <module name="battleship" />
+      <module name="sea_battle" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -66,6 +69,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Battleship" />
+      <item itemvalue="Application.Test" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Battleship" />
@@ -95,6 +102,11 @@
       <workItem from="1688471606870" duration="5788000" />
       <workItem from="1688484816710" duration="4000" />
       <workItem from="1688550599104" duration="3947000" />
+      <workItem from="1688636093910" duration="4000" />
+      <workItem from="1688636882417" duration="6000" />
+      <workItem from="1688642769099" duration="2316000" />
+      <workItem from="1688727352359" duration="603000" />
+      <workItem from="1688829897526" duration="755000" />
     </task>
     <servers />
   </component>
@@ -116,13 +128,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/Battleship.java</url>
-          <line>9</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/Field.java</url>
-          <line>275</line>
+          <line>287</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

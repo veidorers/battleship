@@ -14,4 +14,12 @@ public abstract class Ship {
     }
 
     public abstract int getSize();
+
+    public boolean contains(Coordinates coords) {
+        for(Coordinates c : getCoords()) {
+            if(c.equals(coords))
+                return true;
+        }
+        return false;
+    }
 }
